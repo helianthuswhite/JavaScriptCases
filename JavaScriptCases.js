@@ -262,4 +262,30 @@ function _21 () {
 	stack.pop(); //stack:[1] return 2;
 	stack.push([4,5]); //stack:[1,[4,5]]
 	stack.pop();  //stack:[1] return [4,5]
+	stack.unshift(22); //stack:[22,1] return: 2
+	stack.shift(); //stack:[1] return 22
+	stack.unshift(3,[4,5]); //stack:[3,[4,5],1] return :3
+	stack.shift(); //stack:[[4,5],1] return : 3
+	stack.shift(); //stack:[1] return:[4,5]
+}
+
+//将一个多维数组扁平化为一个单维数组
+function _22 () {
+	var origArray = new Array();
+	origArray[0] = new Array("one","two");
+	origArray[1] = new Array("three","four");
+	origArray[2] = new Array("five","six");
+	//扁平化数组
+	var newArray = origArray[0].concat(origArray[1],origArray[2]);
+	alert(newArray[5]); //打印出six
+}
+
+//创建一个过滤后的数组
+function _23 () {
+	function removeChars (element,index,array) {
+		return (element !== "**"); 
+	}
+	var charSet = new Array("**","bb","cd","**","dd","**");
+	var newArray = charSet.filter(removeChars); //参数为true则加入
+	alert(newArray); //bb,cd,dd
 }
