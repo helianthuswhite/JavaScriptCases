@@ -289,3 +289,18 @@ function _23 () {
 	var newArray = charSet.filter(removeChars); //参数为true则加入
 	alert(newArray); //bb,cd,dd
 }
+
+//验证数组内容
+function _24 () {
+	var elemSet = new Array("**",123,"aaa","abc","-",46,"AAA");
+
+	function textValue (element,index,array) {
+		var textExp = /^[a-zA-Z]+$/;
+		return textExp.test(element);
+	}
+
+	alert(elemSet.every(textValue)); //弹出false
+
+	alert(elemSet.some(textValue)); //弹出true
+}
+
