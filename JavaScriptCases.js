@@ -304,3 +304,22 @@ function _24 () {
 	alert(elemSet.some(textValue)); //弹出true
 }
 
+//测试一个字符串是否存在
+function _25 () {
+	var cookbookString = new Array();
+
+	cookbookString[0] = "Joe's Cooking Book";
+	cookbookString[1] = "Sam's cookBook";
+	cookbookString[2] = "JavaSript CookBook";
+	cookbookString[3] = "JavaSript BookCook";
+
+	//搜索模式
+	var pattern = /Cook.*Book/;
+	for (var i = 0; i < cookbookString.length; i++) {
+		alert(cookbookString[i] + " " + pattern.test(cookbookString[i]);
+	};
+	/*RegExp test方法接受两个参数：要测试的字符串和一个可选的修饰符
+	  它对该字符串应用正则表达式，匹配是返回true，否则返回false*/
+}
+
+
