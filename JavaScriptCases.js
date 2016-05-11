@@ -352,3 +352,17 @@ function _27 () {
 	console.log(str);
 	//使用g和RegExp exec的方法来找到一个模式的所有实例
 }
+
+//使用正则表达式去除空白
+function _28 () {
+	var testString = " this is the string ";
+
+	//去除开头的处的空白
+	testString = testString.replace(/^\s+/,"");
+	//去除结尾处的空白
+	testString = testString.replace(/^\s+$/,"");
+
+	//	ES5中使用trim方法
+}
+
+//
