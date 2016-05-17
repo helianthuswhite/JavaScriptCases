@@ -378,3 +378,22 @@ function _29 () {
 	}
 	var val = Factorial(4);
 }
+
+//JS闭包函数
+function _30 () {
+	function greetingMaker (greeting) {
+		function addName (name) {
+			return greeting + " " + name;
+		}
+		return addName;
+	}
+
+	//创建新的局部函数
+	var daytimeGreeting = greetingMaker("Good Day to you");
+	var nightGreeting = greetingMaker("Good Evening");
+
+	//白天
+	alert(daytimeGreeting(name));
+	//黑夜
+	alert(nightGreeting(name));
+}
