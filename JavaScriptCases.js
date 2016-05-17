@@ -365,3 +365,16 @@ function _28 () {
 	//	ES5中使用trim方法
 }
 
+//递归函数斐波那契数列和求阶乘
+function _29 () {
+	//斐波那契
+	var fibonacci = function (n) {
+		return n < 2 ? n : fibonacci(n - 1) + fibonacci(n - 2);
+	}
+
+	//求阶乘
+	function Factorial(n) {
+		return n == 1 ? 1 : n * Factorial(n-1);
+	}
+	var val = Factorial(4);
+}
