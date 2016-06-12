@@ -8,8 +8,8 @@ function _1() {
 
 // 从一个字符串提取子字符串
 function _2() {
-	var sentence = 'This is one sentence. This is a sentence with a list of
-	items: cherries, oranges, apples, bananas.';
+	var sentence = 'This is one sentence. This is a sentence with a list of'
+		+ 'items: cherries, oranges, apples, bananas.';
 	var start = sentence.indexof(":");
 	var end = sentence.indexof(".",start + 1);
 	var list = sentence.substring(start + 1, end);
@@ -464,4 +464,43 @@ function _31 () {
 
 }
 
-//..hahaha
+//缓存计算提高程序性能
+function _32 () {
+	//缓存计算
+	var fibonacci = function () {
+		var memo = [0,1];
+		var fib = function (n) {
+			var result = memo[n];
+			if (typeof result != "number") {
+				result = fib(n-1) + fib(n-2);
+				memo[n] = result;
+			}
+			return result;
+		}
+		return fib;
+	}();
+
+	//非缓存计算函数
+	var fib = function (n) {
+		return n < 2 ? n : fib(n-1) + fib(n-2);
+	};
+
+	//运行非缓存计算函数
+	console.time("非缓存计算");
+	for (var i = 0; i < 30; i++) {
+		console.log(i + " " + fib(i));
+	}
+	console.timeEnd("非缓存计算");
+
+	//运行缓存计算后的函数
+	console.time("缓存计算");
+	for (var i = 0; i < 30; i++) {
+		console.log(i + " " + fibonacci(i));
+	}
+	console.timeEnd("缓存计算");
+
+	//非缓存计算：54761ms
+	//缓存计算：160ms
+}
+
+//
