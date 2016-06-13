@@ -37,4 +37,50 @@ function _33 () {
 	}
 }
 
-//
+//创建通用的事件监听函数
+function _34 () {
+	//创建监听函数
+	function listenEvent(eventTarget,eventType,eventHandler) {
+		if (eventTarget.addEventListener) {
+			eventTarget.addEventListener(eventType,eventHandler,false);
+		} else if (eventTarget.attachEvent) {
+			eventType = "on" + eventType;
+			eventTarget.attachEvent(eventType,eventHandler);
+		}
+	}
+
+	//停止监听
+	function stopListening (eventTarget,eventType,eventHandler) {
+		if (eventTarget.removeEventListener) {
+			eventTarget.removeEventListener(eventType,eventHandler,false);
+		} else if (eventTarget.detachEvent) {
+			eventType = "on" + eventType;
+			eventTarget.detachEvent(eventType,eventHandler);
+		} else {
+			eventTarget["on" + eventType] = null;
+		}
+	}
+}
+
+//阻止默认事件发生
+function _35 () {
+	function cancelEvent (event) {
+		if (event.preventDefault()) {
+			event.preventDefault();
+		} else {
+			event.returnValue = false;
+		}
+	}
+}
+
+//阻止事件冒泡
+function _36 () {
+	function cancelPropagation (event) {
+		if (event.stopPropagation) {
+			event.stopPropagation();
+		} else {
+			event.cancelBubble = true;
+		}
+	}
+}
+
