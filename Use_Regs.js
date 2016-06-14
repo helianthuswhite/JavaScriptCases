@@ -5,8 +5,6 @@
  *
  */
 
-
-
 //测试一个字符串是否存在
 function _25 () {
 	var cookbookString = new Array();
