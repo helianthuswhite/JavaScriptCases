@@ -5,8 +5,6 @@
  *
  */
 
-
-
 // 打印出日期
 function _8 () {
 	var dt = new Date();
