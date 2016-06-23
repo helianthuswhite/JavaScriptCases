@@ -38,3 +38,23 @@ function _41 () {
 	alert(sum);
 }
 
+//获取一个元素的样式信息
+function _42 () {
+	function getStyle(elem,cssprop,cssprop2) {
+		//IE
+		if (elem.currentStyle) {
+			return elem.currentStyle[cssprop];
+		}else if(document.defaultView && document.defaultView.getComputedStyle) {
+			return document.defaultView.getComputedStyle(elem,null).getPropertyValue(cssprop2);
+		}else {
+			return null;
+		}
+	}
+
+	function start() {
+		var elem = document.getElementById('elem');
+		var color = getStyle(elem,'backgroundColor','background-color');
+		alert(color);
+	}
+}
+
