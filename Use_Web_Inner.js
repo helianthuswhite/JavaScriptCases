@@ -61,5 +61,33 @@ function _47() {
 
 //创建基于悬停的弹出窗口信息
 function _48() {
-	
+	var imgs = document.getElementsByTagName('img');
+	for (var i = 0; i < imgs.length; i++) {
+		manageEvent(imgs[i],'mouseover',getInfo);
+		manageEvent(imgs[i],'mouseout',removeWindow);
+	}
+	function manageEvent(eventObj,event,eventHandle) {
+		if (eventObj.addEventListener) {
+			eventObj.addEventListener(event,eventHandle,false);
+		}else if(eventObj.attachEvent) {
+			event = "on" + event;
+			eventObj.attachEvent(event,eventHandle);
+		}
+	}
 }
+
+//计算弹出窗口的位置
+function _49() {
+	function comPos(obj) {
+		var rect = obj.getBoundingClientRect();
+		var height;
+		if(rect.height) {
+			height = rect.height;
+		} else {
+			height = rect.bottom - rect.top;
+		}
+		var top = rect.top + height + 10;
+		return [rect.left,top];
+	}
+}
+
