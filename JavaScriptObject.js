@@ -115,4 +115,148 @@ function _59() {
 	});
 }
 
+// 阻止对象的可扩展性
+function _60() {
+	'use strict';
 
+	var Test = {
+		value1:'111',
+		value2:function () {
+			return this.value1;
+		}
+	}
+
+	try {
+		Object.preventExtensions(Test);
+		Test.value3 = '222';	//抛出异常
+	} catch(e) {
+		alert(e);
+	}
+}
+
+// 阻止对象修改和添加属性描述符
+function _61() {
+	'use strict';
+
+	var Test = {
+		value1:'111',
+		value2:function () {
+			return this.value1;
+		}
+	}
+
+	try {
+		// 冻结对象
+		Object.seal(Test);
+
+		Test.newProp = 'value3';	//抛出异常
+
+		// 使用如下代码
+		Object.defineProperty(Title,'category',{
+			get:function () {
+				return category;
+			},
+			set:function (value) {
+				category = value;
+			},
+			enumerable:true,
+			configurable:true
+		});
+	} catch(e) {
+		alert(e);
+	}
+
+}
+
+// 阻止对对象的任何修改
+function _62() {
+	var Test = {
+		value1:'111',
+		value2:function () {
+			return this.value1;
+		}
+	}
+
+	try {
+		// 冻结对象
+		Object.freeze(Test);
+
+		Test.value2 = '222';	//抛出异常
+
+		// 使用如下代码
+		Object.defineProperty(Title,'category',{
+			get:function () {
+				return category;
+			},
+			set:function (value) {
+				category = value;
+			},
+			enumerable:true,
+			configurable:true
+		});
+	} catch(e) {
+		alert(e);
+	}
+
+}
+
+// 一次性对象和为你的JavaScript提供命名
+function _63() {
+	var jscbObject = {
+		getElem:function (id) {
+			return document.getElementById(id);
+		},
+		stripslashes:function (str) {
+			return str.replace(/\\/g,'');
+		},
+		removeAngleBrackets:function (str) {
+			return str.replace(/</g,'&lt;').replace(/>/g,'&gt;');
+		}
+	}
+
+	var incoming = jscbObject.getElem('incoming');
+	var content = incoming.innerHTML;
+
+	var result = jscbObject.stripslashes(content);
+	result = jscbObject.removeAngleBrackets(result);
+}
+
+//使用prototype.bind()来控制函数作用域
+function _64() {
+	window.name = 'window';
+	var newObject = {
+		name:'newObject',
+		sayHello:function () {
+			nestedGreeting = function (greeting) {
+				alert(greeting + this.name);
+			}.bind(this);  //这里将this指向了该对象的原对象
+			nestedGreeting('hello');
+		}
+	}
+	newObject.sayHello('hello'); //弹出 hello window
+}
+
+//将对象方法链化
+function _65() {
+	function oldObject(param1) {
+		this.param1 = param1;
+		this.getParam = function () {
+			return this.param1;
+		}
+	}
+
+	function newObject(param1,param2) {
+		this.param2 = param2;
+		this.getParam2 = function () {
+			return this.param2;
+		}
+		//通过返回this将对象链化
+		oldObject.apply(this,arguments);
+		this.getAllparams = function () {
+			this.getParam();
+			return this;
+		}
+	}
+	var obj = new newObject('value1','value2');
+	console.log(obj.getAllparams().getParam2());
+}
